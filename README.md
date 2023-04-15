@@ -12,8 +12,8 @@
 | last_name_kana     | string  | null: false                |
 | birth              | date    | null: false                |
 
-- has_many :item
-- has_many :purchase
+- has_many :items
+- has_many :purchases
 
 ## itemsテーブル 
 
@@ -47,8 +47,8 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| post_code     | integer    | null: false                    |
-| prefecture    | integer    | null: false                    |
+| post_code     | string     | null: false                    |
+| ship_from_id  | integer    | null: false                    |
 | city_name     | string     | null: false                    |
 | house_number  | string     | null: false                    |
 | building_name | string     |                                |
