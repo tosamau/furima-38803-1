@@ -10,49 +10,49 @@
 | last_name          | string  | null: false                |
 | family_name_kana   | string  | null: false                |
 | last_name_kana     | string  | null: false                |
-| birth_year         | integer | null: false                |
-| birth_month        | integer | null: false                |
-| birth_day          | integer | null: false                |
+| birth              | date    | null: false                |
 
-- has_many :items
-- has_many :purchases
+- has_many :item
+- has_many :purchase
 
 ## itemsテーブル 
 
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| item_name     | string     | null: false                    |
-| description   | text       | null: false                    |
-| categories    | string     | null: false                    |
-| condition     | string     | null: false                    |
-| shipping_fee  | string     | null: false                    |
-| ship_from     | string     | null: false                    |
-| shipping_days | string     | null: false                    |
-| price         | integer    | null: false                    |
-| user_id       | references | null: false, foreign_key: true |
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| item_name       | string     | null: false                    |
+| description     | text       | null: false                    |
+| category_id     | integer    | null: false                    |
+| condition_id    | integer    | null: false                    |
+| shipping_fee_id | integer    | null: false                    |
+| ship_from_id    | integer    | null: false                    |
+| shipping_day_id | integer    | null: false                    |
+| price           | integer    | null: false                    |
+| user            | references | null: false, foreign_key: true |
 
-- belongs_to :users
-- has_one :purchases 
+- belongs_to :user
+- has_one :purchase 
 
 ## purchasesテーブル 
 
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| item_id            | references | null: false, foreign_key: true |
-| user_id            | references | null: false, foreign_key: true |
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| item            | references | null: false, foreign_key: true |
+| user            | references | null: false, foreign_key: true |
 
-- belongs_to :items
-- has_one :shipping_addresses 
+- belongs_to :item
+- belongs_to :user
+- has_one :shipping_address 
 
 ## shipping_addressesテーブル 
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | post_code     | integer    | null: false                    |
-| city_name     | string     | null: false,                   |
-| house_number  | string     | null: false,                   |
+| prefecture    | integer    | null: false                    |
+| city_name     | string     | null: false                    |
+| house_number  | string     | null: false                    |
 | building_name | string     |                                |
-| phone_number  | integer    | null: false                    |
-| purchase_id   | references | null: false, foreign_key: true |
+| phone_number  | string     | null: false                    |
+| purchase      | references | null: false, foreign_key: true |
 
-- belongs_to :purchases
+- belongs_to :purchase
