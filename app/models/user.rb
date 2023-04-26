@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   VALID_KATAKANA_REGEX = /\A[\p{katakana}\p{blank}ー－]+\z/
-  VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥々]+\z/
+  VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]/
 
   validates :nickname, presence: true
   validates :password, format: { with: VALID_PASSWORD_REGEX }
