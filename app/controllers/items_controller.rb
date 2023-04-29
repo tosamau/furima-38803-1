@@ -7,6 +7,11 @@ class ItemsController < ApplicationController
 
   private
 
+  private
+
+  #def message_params
+    #params.require(:hoge).permit(:hoge, :image).merge(user_id: current_user.id)
+ # end
   #def move_to_index
     #return if user_signed_in?
 
