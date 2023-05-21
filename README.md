@@ -30,7 +30,7 @@
 | user            | references | null: false, foreign_key: true |
 
 - belongs_to :user
-- has_one :purchase 
+- has_one :order 
 
 ## odersテーブル 
 
