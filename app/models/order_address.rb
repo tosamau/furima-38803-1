@@ -6,13 +6,12 @@ class OrderAddress
     validates :token
     validates :item_id
     validates :user_id
-    validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :city_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters' }
-    validates :house_number #, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters' }
-    #validates :building_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters' }
-    validates :phone_number,numericality: {only_integer: true, message: "is invalid"}
+    validates :post_code, format: {with: /\A\d{3}-\d{4}\z/, message: "is invalid. Include hyphen(-)"} 
+    validates :city_name
+    validates :house_number
+    validates :phone_number,format: { with: /\A[0-9]{10,}\z/, message: "is invalid." }
   end
-    validates :ship_from_id, numericality: { other_than: 1 , message: "can't be blank" }
+    validates :ship_from_id, numericality: { other_than: 1 , message: "can't be blank" } #都道府県
 
     def save
       item = Item.find(item_id)
