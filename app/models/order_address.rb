@@ -9,7 +9,7 @@ class OrderAddress
     validates :post_code, format: {with: /\A\d{3}-\d{4}\z/, message: "is invalid. Include hyphen(-)"} 
     validates :city_name
     validates :house_number
-    validates :phone_number,format: { with: /\A[0-9]{10,}\z/, message: "is invalid." }
+    validates :phone_number,format: { with: /\A[0-9]{10,11}\z/, message: "is invalid" }
   end
     validates :ship_from_id, numericality: { other_than: 1 , message: "can't be blank" } #都道府県
 
