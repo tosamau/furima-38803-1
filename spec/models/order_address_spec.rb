@@ -22,26 +22,32 @@ RSpec.describe OrderAddress, type: :model do
 
 
   context '内容に問題がある場合' do
-    it "tokenが空では保存ができない" do
+    it "tokenが空では購入ができない" do
       @order_address.token = nil
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Token can't be blank")
     end
 
-    it "郵便番号がブランクでは保存ができない" do
+    it "郵便番号がブランクでは購入できない" do
       @order_address.post_code = nil
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Post code can't be blank")
     end
 
-    it "郵便番号にハイフンがないと保存ができない" do
+    it "郵便番号にハイフンがないと購入できない" do
       @order_address.post_code = nil
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
     end
 
-    it "郵便番号の桁数が少ないと保存ができない" do
+    it "郵便番号の桁数が少ないと購入できない" do
       @order_address.post_code = '111-111'
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+    end
+
+    it "郵便番号の桁数が多いと購入できない" do
+      @order_address.post_code = '111-11111'
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
     end
@@ -52,37 +58,43 @@ RSpec.describe OrderAddress, type: :model do
       expect(@order_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
     end
 
-    it '都道府県が空では出品できない' do
+    it '都道府県が空では購入できない' do
       @order_address.ship_from_id = '1'
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Ship from can't be blank")
     end
       
-    it '市区町村が空では出品できない' do
+    it '市区町村が空では購入できない' do
       @order_address.city_name = nil
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("City name can't be blank")
     end
       
-    it '番地が空では出品できない' do
+    it '番地が空では購入できない' do
       @order_address.house_number = nil
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("House number can't be blank")
     end
 
-    it '電話番号が空では出品できない' do
+    it '電話番号が空では購入できない' do
       @order_address.phone_number = nil
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Phone number can't be blank")
     end
 
-    it '電話番号が10桁未満では出品できない' do
+    it '電話番号が半角文字列以外出品できない' do
+      @order_address.phone_number = '０９０１２３４５６７８'
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include("Phone number is invalid")
+    end
+
+    it '電話番号が10桁未満では購入できない' do
       @order_address.phone_number = '090123456'
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Phone number is invalid")
     end
 
-    it '電話番号が10桁以上11桁以内では出品できない' do
+    it '電話番号が11桁以上では購入できない' do
       @order_address.phone_number = '090123456789'
       @order_address.valid?
       expect(@order_address.errors.full_messages).to include("Phone number is invalid")

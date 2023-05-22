@@ -1,5 +1,4 @@
 const pay = () => {
-  //console.log("OK")
   const payjp = Payjp(process.env.PAYJP_PUBLIC_KEY);
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
@@ -18,7 +17,6 @@ submit.addEventListener("click", (e) => {
     if (response.error) {
     } else {
       const token = response.id;
-      //console.log(token)
       const renderDom = document.getElementById("charge-form");
       const tokenObj = `<input value=${token} type="hidden" name='token'>`;
       renderDom.insertAdjacentHTML("beforeend", tokenObj);
