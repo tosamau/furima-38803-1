@@ -13,7 +13,7 @@
 | birth              | date    | null: false                |
 
 - has_many :items
-- has_many :purchases
+- has_many :orders
 
 ## itemsテーブル 
 

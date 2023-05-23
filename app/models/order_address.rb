@@ -14,9 +14,10 @@ class OrderAddress
     validates :ship_from_id, numericality: { other_than: 1 , message: "can't be blank" } #都道府県
 
     def save
-      item = Item.find(item_id)
-      user = User.find(user_id)
-      order = Order.create(item: item, user: user)
+      #item = Item.find(item_id)
+      #user = User.find(user_id)
+      #order = Order.create(item: item, user: user)
+      order = Order.create(item_id: item_id, user_id: user_id)
       Address.create(post_code: post_code, ship_from_id: ship_from_id, city_name: city_name, house_number: house_number, building_name: building_name, phone_number: phone_number, order_id: order.id)
     end
 end
