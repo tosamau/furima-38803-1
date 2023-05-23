@@ -13,7 +13,7 @@
 | birth              | date    | null: false                |
 
 - has_many :items
-- has_many :purchases
+- has_many :orders
 
 ## itemsテーブル 
 
@@ -30,9 +30,9 @@
 | user            | references | null: false, foreign_key: true |
 
 - belongs_to :user
-- has_one :purchase 
+- has_one :order 
 
-## purchasesテーブル 
+## odersテーブル 
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
@@ -41,9 +41,9 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :shipping_address 
+- has_one :address 
 
-## shipping_addressesテーブル 
+## addressesテーブル 
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
@@ -53,6 +53,6 @@
 | house_number  | string     | null: false                    |
 | building_name | string     |                                |
 | phone_number  | string     | null: false                    |
-| purchase      | references | null: false, foreign_key: true |
+| order         | references | null: false, foreign_key: true |
 
-- belongs_to :purchase
+- belongs_to :order
